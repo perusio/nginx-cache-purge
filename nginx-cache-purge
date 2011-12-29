@@ -51,8 +51,6 @@ function nginx_cache_purge_item() {
     [ -d $2 ] || exit 2
     cache_files=$(grep -Rl "$1" $2)
 
-    echo $cache_files
-
     ## Act based on grep result.
     if [ -n "$cache_files" ]; then
         ## Loop over all matched items.
