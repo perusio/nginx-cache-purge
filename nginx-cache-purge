@@ -49,7 +49,9 @@ function nginx_cache_purge_item() {
     local cache_files
 
     [ -d $2 ] || exit 2
-    cache_file=$(grep -Rl "\"$1\"" $2)
+    cache_files=$(grep -Rl "$1" $2)
+
+    echo $cache_files
 
     ## Act based on grep result.
     if [ -n "$cache_files" ]; then
