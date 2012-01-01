@@ -34,12 +34,12 @@ SCRIPTNAME=${0##*/}
 
 function print_usage() {
     echo "$SCRIPTNAME <URI (grep pattern)> <cache directory>."
-    exit 1
 }
 
 ## Check the number of arguments.
 if [ $# -ne 2 ]; then
     print_usage
+    exit 1
 fi
 
 ## Removes an item from the given cache zone.
