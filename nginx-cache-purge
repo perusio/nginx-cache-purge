@@ -42,6 +42,19 @@ if [ $# -ne 2 ]; then
     exit 1
 fi
 
+## Return the files where the items are cached.
+## $1 - the filename, can be a pattern .
+## $2 - the cache directory.
+## $3 - (optional) the number of parallel processes to run for grep.
+function get_cache_files() {
+    ## The maximum number of parallel processes. 16 since the cache
+    ## naming scheme is hex based.
+    local max_parallel=${3-16}
+    ## Get the cache files running grep in parallel for each top level
+    ## cache dir.
+    find $2 -maxdepth 1 -type d | xargs -P $max_parallel -n 1 grep -Rl "$1" | sort -u
+} # get_cache_files
+
 ## Removes an item from the given cache zone.
 ## $1 - the filename, can be a pattern .
 ## $2 - the cache directory.
@@ -49,7 +62,7 @@ function nginx_cache_purge_item() {
     local cache_files
 
     [ -d $2 ] || exit 2
-    cache_files=$(grep -Rl "$1" $2)
+    cache_files=$(get_cache_files "$1" $2)
 
     ## Act based on grep result.
     if [ -n "$cache_files" ]; then
