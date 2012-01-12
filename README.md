@@ -2,7 +2,7 @@
 
 ## Introduction 
 
-This simple script removes an item or set of items from
+This simple script **removes** an item or set of items from
 [Nginx](http://nginx.org) cache, be it
 [`fastcgi`](http://wiki.nginx.org/HttpFcgiModule#fastcgi_cache) or
 [`proxy`](http://wiki.nginx.org/HttpProxyModule#proxy_cache).
@@ -38,3 +38,8 @@ directory.
  2. Place the script in a convenient place.
  
  3. Done.
+
+## See also 
+
+There's another [script](https://github.com/perusio/nginx-cache-inspector)
+on github for **inspecting** cache items.
