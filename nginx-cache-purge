@@ -68,6 +68,7 @@ function nginx_cache_purge_item() {
     if [ -n "$cache_files" ]; then
         ## Loop over all matched items.
         for i in $cache_files; do
+            [ -f $i ] || continue
             echo "Deleting $i from $2."
             rm $i
         done
