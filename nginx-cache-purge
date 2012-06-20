@@ -52,7 +52,7 @@ function get_cache_files() {
     local max_parallel=${3-16}
     ## Get the cache files running grep in parallel for each top level
     ## cache dir.
-    find $2 -maxdepth 1 -type d | xargs -P $max_parallel -n 1 grep -Rl "$1" | sort -u
+    find $2 -maxdepth 1 -type d | xargs -P $max_parallel -n 1 grep -Rl "KEY:.*$1" | sort -u
 } # get_cache_files
 
 ## Removes an item from the given cache zone.
