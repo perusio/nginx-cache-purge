@@ -43,7 +43,7 @@ if [ $# -ne 2 ] && [ $# -ne 3 ]; then
 fi
 
 ## Return the files where the items are cached.
-## $1 - the filename, can be a pattern .
+## $1 - the filename, can be a pattern.
 ## $2 - the cache directory.
 ## $3 - (optional) the number of parallel processes to run for grep.
 function get_cache_files() {
@@ -56,7 +56,7 @@ function get_cache_files() {
 } # get_cache_files
 
 ## Removes an item from the given cache zone.
-## $1 - the filename, can be a pattern .
+## $1 - the filename, can be a pattern.
 ## $2 - the cache directory.
 ## $3 - (optional) the number of parallel processes to run for grep.
 function nginx_cache_purge_item() {
