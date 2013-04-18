@@ -33,11 +33,11 @@
 SCRIPTNAME=${0##*/}
 
 function print_usage() {
-    echo "$SCRIPTNAME <URI (grep pattern)> <cache directory>."
+    echo "$SCRIPTNAME <URI (grep pattern)> <cache directory> [number of parallel grep processes]"
 }
 
 ## Check the number of arguments.
-if [ $# -ne 2 ]; then
+if [ $# -ne 2 ] && [ $# -ne 3 ]; then
     print_usage
     exit 1
 fi
@@ -58,11 +58,12 @@ function get_cache_files() {
 ## Removes an item from the given cache zone.
 ## $1 - the filename, can be a pattern .
 ## $2 - the cache directory.
+## $3 - (optional) the number of parallel processes to run for grep.
 function nginx_cache_purge_item() {
     local cache_files
 
     [ -d $2 ] || exit 2
-    cache_files=$(get_cache_files "$1" $2)
+    cache_files=$(get_cache_files "$1" $2 $3)
 
     ## Act based on grep result.
     if [ -n "$cache_files" ]; then
@@ -79,4 +80,4 @@ function nginx_cache_purge_item() {
 } # nginx_cache_purge_item
 
 ## Try to purge the given item from the cache.
-nginx_cache_purge_item $1 $2
+nginx_cache_purge_item $1 $2 $3
