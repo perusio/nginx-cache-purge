@@ -79,4 +79,4 @@ function nginx_cache_purge_item() {
 } # nginx_cache_purge_item
 
 ## Try to purge the given item from the cache.
-nginx_cache_purge_item $1 $2
+nginx_cache_purge_item "$1" "$2"
