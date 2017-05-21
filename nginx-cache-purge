@@ -37,7 +37,7 @@ function print_usage() {
 }
 
 ## Check the number of arguments.
-if [ $# -ne 2 ]; then
+if [ $# -ne 2 ] && [ $# -ne 3 ]; then
     print_usage
     exit 1
 fi
